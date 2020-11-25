@@ -30,7 +30,7 @@ class TasksActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTasksBinding
     private val adapter = TasksAdapter()
-
+    private var start = false
 
     private lateinit var viewModel: TasksViewModel
 
@@ -54,6 +54,20 @@ class TasksActivity : AppCompatActivity() {
             updateSort(tasksUiModel.sortOrder)
             binding.showCompletedSwitch.isChecked = tasksUiModel.showCompleted
         }
+
+        viewModel.tasksUiModel.observe(owner = this) { tasksUiModel ->
+            if (start) {
+                adapter.submitList(tasksUiModel.tasks)
+                binding.launchNumber.text = tasksUiModel.startLaunchCounter.toString()
+            }
+            else
+            {
+                viewModel.updateLaunchCounter(tasksUiModel.startLaunchCounter)
+                start = true
+            }
+        }
+
+
 
     }
 
