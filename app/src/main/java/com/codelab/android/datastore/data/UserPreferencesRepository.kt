@@ -134,6 +134,13 @@ class UserPreferencesRepository private constructor(context: Context) {
         }
     }
 
+    suspend fun updateAppCounter(value: Int)
+    {
+        userPreferencesStore.updateData { preferences ->
+            preferences.toBuilder().number(value).build()
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: UserPreferencesRepository? = null

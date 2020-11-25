@@ -57,6 +57,7 @@ class TasksViewModel(
             sortOrder = userPreferences.sortOrder
         )
     }
+
     val tasksUiModel = tasksUiModelFlow.asLiveData()
 
     private fun filterSortTasks(
