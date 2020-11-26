@@ -32,6 +32,7 @@ data class TasksUiModel(
     val tasks: List<Task>,
     val showCompleted: Boolean,
     val sortOrder: SortOrder,
+    val startLaunchCounter: Int
 )
 
 class TasksViewModel(
@@ -54,7 +55,8 @@ class TasksViewModel(
                 userPreferences.sortOrder
             ),
             showCompleted = userPreferences.showCompleted,
-            sortOrder = userPreferences.sortOrder
+            sortOrder = userPreferences.sortOrder,
+            startLaunchCounter = userPreferences.number
         )
     }
 
