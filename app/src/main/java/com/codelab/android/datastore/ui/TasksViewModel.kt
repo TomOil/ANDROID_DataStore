@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 data class TasksUiModel(
     val tasks: List<Task>,
     val showCompleted: Boolean,
-    val sortOrder: SortOrder
+    val sortOrder: SortOrder,
 )
 
 class TasksViewModel(
@@ -100,6 +100,12 @@ class TasksViewModel(
     fun enableSortByPriority(enable: Boolean) {
         viewModelScope.launch {
             userPreferencesRepository.enableSortByPriority(enable)
+        }
+    }
+
+    fun updateLaunchCounter(value: Int){
+        viewModelScope.launch {
+            userPreferencesRepository.updateAppCounter(value + 1)
         }
     }
 }
